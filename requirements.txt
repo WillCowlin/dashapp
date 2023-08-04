@@ -1,4 +1,4 @@
-dash==3.0.4
+dash
 pandas
 numpy
 plotly.graph_objects
