@@ -1,0 +1,5 @@
+dash==3.0.4
+pandas
+numpy
+plotly.graph_objects
+scipy
