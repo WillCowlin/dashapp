@@ -1,6 +1,5 @@
 dash
 pandas
 numpy
-plotly.graph_objects
 scipy
 gunicorn
