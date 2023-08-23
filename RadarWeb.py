@@ -237,7 +237,7 @@ YZ={'Aerial':'ASucc','Deep Defending':'Blocks','Tackling':'TSucc','Recovering':'
                     'Creating & Scoring':'Scoring'}
 
 
-# In[ ]:
+# In[3]:
 
 
 app = Dash(__name__, external_stylesheets=[dbc.themes.BOOTSTRAP])
@@ -252,7 +252,7 @@ app.layout = dbc.Container([dbc.Row([dbc.Col([dcc.Dropdown(id='searchbar1', opti
                                              width=6),
                                      dbc.Col([dcc.Graph(id='scatter',config={'displayModeBar':False,'showtips':False,
                                                                             })],
-                                             width=5)]),dbc.Col([])])
+                                             width=6)])])
 
 
 
