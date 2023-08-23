@@ -237,7 +237,7 @@ YZ={'Aerial':'ASucc','Deep Defending':'Blocks','Tackling':'TSucc','Recovering':'
                     'Creating & Scoring':'Scoring'}
 
 
-# In[3]:
+# In[ ]:
 
 
 app = Dash(__name__, external_stylesheets=[dbc.themes.BOOTSTRAP])
@@ -427,22 +427,18 @@ def scatter(Player, Metric):
     fig2.add_trace(go.Scatter(x=dfY[x], y=dfY[y],mode='markers',hovertemplate=dfY['Player'],
                             marker_size=10, marker_color='red', marker_symbol='circle-open-dot', 
                             name=''))
-    fig2.update_xaxes(title=xl,
-                     showgrid=False,
-                     linecolor='darkgrey',
-                     griddash='dot',
+    fig2.update_xaxes(showgrid=False,
+                     linecolor='white',
                      zeroline=False,showticklabels=False)
-    fig2.update_yaxes(title=yl,
-                     showgrid=False,
-                     linecolor='darkgrey',
-                     griddash='dot',
+    fig2.update_yaxes(showgrid=False,
+                     linecolor='white',
                      zeroline=False,showticklabels=False)
 
 
     fig2.update_layout(paper_bgcolor='rgb(17,17,17)', plot_bgcolor='rgb(17,17,17)', 
                       font_color='white', title={'x':0.5},template = "plotly_dark",
                       margin=dict(l=100, r=100, t=100, b=100), height=650,width=650,
-                      showlegend=False,dragmode=False)
+                      showlegend=False,dragmode=False, xaxis_title=xl, yaxis_title=yl)
 
     
     if Metric == 'Pass Progression & Control' :
