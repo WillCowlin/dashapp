@@ -237,22 +237,22 @@ YZ={'Aerial':'ASucc','Deep Defending':'Blocks','Tackling':'TSucc','Recovering':'
                     'Creating & Scoring':'Scoring'}
 
 
-# In[ ]:
+# In[8]:
 
 
 app = Dash(__name__, external_stylesheets=[dbc.themes.BOOTSTRAP])
 server = app.server
 
 app.layout = dbc.Container([dbc.Row([dbc.Col([dcc.Dropdown(id='searchbar1', options=dfp.index, placeholder='Player Search', 
-                            value='Erling Haaland', clearable=False,style={'font_size':50})],width=6),
+                            value='Erling Haaland', clearable=False,style={'font_size':50})]),
                                     dbc.Col([dcc.Dropdown(id='searchbar2', options=metrics, placeholder='Metric', 
-                           value='Aerial', clearable=False,style={'font_size':50})],width=6)]),
+                           value='Aerial', clearable=False,style={'font_size':50})])]),
                             dbc.Row([dbc.Col([dcc.Graph(id='radar', config={'displayModeBar':False},
                                              style={})],
-                                             width=6),
+                                             ),
                                      dbc.Col([dcc.Graph(id='scatter',config={'displayModeBar':False,'showtips':False,
                                                                             })],
-                                             width=6)])])
+                                             )])])
 
 
 
