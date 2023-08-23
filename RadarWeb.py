@@ -408,9 +408,9 @@ def radar(Player):
 
 def scatter(Player, Metric):
     
-    Position = dfp.loc[Player,'Position']
+    Position2 = dfp.loc[Player,'Position']
     
-    dfX = pos[Position]
+    dfX = pos[Position2]
     dfY=dfX[dfX['Player']==Player]
     
 
@@ -426,16 +426,7 @@ def scatter(Player, Metric):
     
     fig2.add_trace(go.Scatter(x=dfY[x], y=dfY[y],mode='markers',hovertemplate=dfY['Player'],
                             marker_size=10, marker_color='red', marker_symbol='circle-open-dot', 
-                            name='')),
-
-
-    fig2.update_layout(paper_bgcolor='rgb(17,17,17)', plot_bgcolor='rgb(17,17,17)', 
-                      font_color='white', title={'x':0.5},template = "plotly_dark",
-                      margin=dict(l=100, r=100, t=100, b=100), height=650,width=650,
-                      showlegend=False,dragmode=False)
-
-
-
+                            name=''))
     fig2.update_xaxes(title=xl,
                      showgrid=False,
                      linecolor='darkgrey',
@@ -446,6 +437,13 @@ def scatter(Player, Metric):
                      linecolor='darkgrey',
                      griddash='dot',
                      zeroline=False,showticklabels=False)
+
+
+    fig2.update_layout(paper_bgcolor='rgb(17,17,17)', plot_bgcolor='rgb(17,17,17)', 
+                      font_color='white', title={'x':0.5},template = "plotly_dark",
+                      margin=dict(l=100, r=100, t=100, b=100), height=650,width=650,
+                      showlegend=False,dragmode=False)
+
     
     if Metric == 'Pass Progression & Control' :
         fig2.update_yaxes(autorange="reversed")
@@ -460,7 +458,7 @@ def scatter(Player, Metric):
     x1=dfX[x].max(), y1=np.percentile(dfX[y],50,interpolation='midpoint'),
     line=dict(color="white",width=1, dash='dot')) 
     
-    dfz = pos[Position]
+    dfz = pos[Position2]
 
     dfz['Clr/1/3pc'] = stats.zscore(dfz['Clr/1/3'])
     dfz['Blocks/Shpc'] = stats.zscore(dfz['Blocks/Sh'])
