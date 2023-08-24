@@ -237,7 +237,7 @@ YZ={'Aerial':'ASucc','Deep Defending':'Blocks','Tackling':'TSucc','Recovering':'
                     'Creating & Scoring':'Scoring'}
 
 
-# In[ ]:
+# In[21]:
 
 
 app = Dash(__name__, external_stylesheets=[dbc.themes.BOOTSTRAP])
@@ -438,7 +438,7 @@ def scatter(Player, Metric):
     fig2.update_layout(paper_bgcolor='rgb(17,17,17)', plot_bgcolor='rgb(17,17,17)', 
                       font_color='white', title={'x':0.5},template = "plotly_dark",
                       margin=dict(l=100, r=100, t=100, b=100), height=650,width=650,
-                      showlegend=False,dragmode=False, xaxis_title=xl, yaxis_title=yl)
+                      showlegend=False,dragmode=False, xaxis_title='', yaxis_title='')
 
     
     if Metric == 'Pass Progression & Control' :
@@ -594,7 +594,28 @@ def scatter(Player, Metric):
                     
                     bordercolor='white',
                     borderwidth=1,
-                    font=dict(color="white", size=11))
+                    font=dict(color="white", size=12))
+        
+    fig2.add_annotation(text=xl, 
+                    align='center',
+                    showarrow=False,
+                    xref='paper',
+                    yref='paper',
+                    x=0.5,
+                    y=-0.01,
+                    yanchor='top',
+                    font=dict(color="white", size=12))
+    
+    fig2.add_annotation(text=yl, 
+                    align='center',
+                    showarrow=False,
+                    xref='paper',
+                    yref='paper',
+                    x=-0.01,
+                    y=0.5,
+                    xanchor='right',
+                    textangle=-90,
+                    font=dict(color="white", size=12))
 
     return fig2
 
