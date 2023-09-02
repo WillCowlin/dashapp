@@ -79,7 +79,8 @@ dfp.index = range(0,len(dfp))
 dfp['txA'] = dfp['Squad'].map(dfs.set_index('Squad')['xA'])
 dfp.index = range(0,len(dfp))
 
-dfp
+dfp['TRecov'] = dfp['Squad'].map(dfs.set_index('Squad')['Recov']) + dfp['Squad'].map(dfo.set_index('Squad')['Recov'])
+dfp.index = range(0,len(dfp))
 
 #w*x
 
@@ -91,6 +92,8 @@ dfp['oAttT']=dfp['90s']*dfp['oAttT']
 dfp['sAttT']=dfp['90s']*dfp['sAttT']
 dfp['tg']=dfp['90s']*dfp['tg']
 dfp['txA']=dfp['90s']*dfp['txA']
+dfp['TRecov']=dfp['90s']*dfp['TRecov']
+
 
 #aggrigate 
 dfp=dfp.groupby(dfp['Player/Age'],as_index=False).aggregate({'Player':'first', 'Position':'first','90s':'sum','t90s':'sum',
@@ -102,7 +105,7 @@ dfp=dfp.groupby(dfp['Player/Age'],as_index=False).aggregate({'Player':'first', '
                                                              'G-PK':'sum','TOSucc':'sum','TOAtt':'sum','Ast':'sum',
                                                              'xA':'sum','Touches':'sum','txA':'sum','Age':'first','PrgP':'sum',
                                                              'PrgC':'sum','CmpS':'sum','AttS':'sum','CmpM':'sum','AttM':'sum',
-                                                             'CmpL':'sum','AttL':'sum'})
+                                                             'CmpL':'sum','AttL':'sum','TRecov':'sum'})
 
 dfp=dfp.loc[(dfp['90s']>=13.6)]
 dfp.index = range(0,len(dfp))
@@ -116,6 +119,7 @@ dfp['oAttT']=dfp['oAttT']/dfp['90s']
 dfp['sAttT']=dfp['sAttT']/dfp['90s']
 dfp['tg']=dfp['tg']/dfp['90s']
 dfp['txA']=dfp['txA']/dfp['90s']
+dfp['TRecov']=dfp['TRecov']/dfp['90s']
 
 #calculacte performance metrics
 dfp['Clr/1/3']=(dfp['Clr']/dfp['90s'])/(dfp['o1/3P']/dfp['t90s'])
@@ -124,7 +128,7 @@ dfp['Won%']=dfp['Won']/(dfp['Lost']+dfp['Won'])
 dfp['Won/90']=dfp['Won']/dfp['90s']
 dfp['dTkl%']=dfp['dTkl']/(dfp['dTAtt'])
 dfp['Tkl/oT']=(dfp['Tkl']/dfp['90s'])/(dfp['oLT']/dfp['t90s'])
-dfp['Recov/90']=dfp['Recov']/dfp['90s']
+dfp['Recov/90']=(dfp['Recov']/dfp['90s'])/(dfp['TRecov']/dfp['t90s'])
 dfp['Int/oP']=(dfp['Int']/dfp['90s'])/(dfp['oAttT']/dfp['t90s'])
 dfp['Pass%']=dfp['CmpT']/dfp['AttT']
 dfp['P/sP']=(dfp['CmpT']/dfp['90s'])/(dfp['sAttT']/dfp['t90s'])
@@ -237,7 +241,7 @@ YZ={'Aerial':'ASucc','Deep Defending':'Blocks','Tackling':'TSucc','Recovering':'
                     'Creating & Scoring':'Scoring'}
 
 
-# In[21]:
+# In[4]:
 
 
 app = Dash(__name__, external_stylesheets=[dbc.themes.BOOTSTRAP])
