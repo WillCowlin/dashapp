@@ -17,7 +17,13 @@ from scipy import stats
 import dash_bootstrap_components as dbc
 
 
-# In[2]:
+# In[27]:
+
+
+help(dcc.Markdown)
+
+
+# In[3]:
 
 
 #load data
@@ -241,7 +247,7 @@ YZ={'Aerial':'ASucc','Deep Defending':'Blocks','Tackling':'TSucc','Recovering':'
                     'Creating & Scoring':'Scoring'}
 
 
-# In[4]:
+# In[41]:
 
 
 app = Dash(__name__, external_stylesheets=[dbc.themes.BOOTSTRAP])
@@ -251,6 +257,10 @@ app.layout = dbc.Container([dbc.Row([dbc.Col([dcc.Dropdown(id='searchbar1', opti
                             value='Erling Haaland', clearable=False,style={'font_size':50})],width=6),
                                     dbc.Col([dcc.Dropdown(id='searchbar2', options=metrics, placeholder='Metric', 
                            value='Aerial', clearable=False,style={'font_size':50})],width=6)]),
+                            
+                            dbc.Row([dcc.Markdown('''###### Data from Opta via [FBref](https://fbref.com/en/)''',
+                                                  style={'color':'white'})]),
+                            
                             dbc.Row([dbc.Col([dcc.Graph(id='radar', config={'displayModeBar':False},
                                              style={})],
                                              width=6),
