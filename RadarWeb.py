@@ -17,13 +17,7 @@ from scipy import stats
 import dash_bootstrap_components as dbc
 
 
-# In[27]:
-
-
-help(dcc.Markdown)
-
-
-# In[3]:
+# In[2]:
 
 
 #load data
@@ -247,28 +241,31 @@ YZ={'Aerial':'ASucc','Deep Defending':'Blocks','Tackling':'TSucc','Recovering':'
                     'Creating & Scoring':'Scoring'}
 
 
-# In[41]:
+# In[3]:
 
 
-app = Dash(__name__, external_stylesheets=[dbc.themes.BOOTSTRAP])
+app = Dash(__name__, meta_tags=[{'name': 'viewport',
+                       'content': 'width=device-width, initial-scale=0.5, maximum-scale=1.2, minimum-scale=0.5,'}],
+           external_stylesheets=[dbc.themes.BOOTSTRAP],
+           )
 server = app.server
+app.title = 'EffectiveFootball'
 
-app.layout = dbc.Container([dbc.Row([dbc.Col([dcc.Dropdown(id='searchbar1', options=dfp.index, placeholder='Player Search', 
-                            value='Erling Haaland', clearable=False,style={'font_size':50})],width=6),
-                                    dbc.Col([dcc.Dropdown(id='searchbar2', options=metrics, placeholder='Metric', 
-                           value='Aerial', clearable=False,style={'font_size':50})],width=6)]),
-                            
-                            dbc.Row([dcc.Markdown('''###### Data from Opta via [FBref](https://fbref.com/en/)''',
-                                                  style={'color':'white'})]),
-                            
-                            dbc.Row([dbc.Col([dcc.Graph(id='radar', config={'displayModeBar':False},
-                                             style={})],
-                                             width=6),
-                                     dbc.Col([dcc.Graph(id='scatter',config={'displayModeBar':False,'showtips':False,
-                                                                            })],
-                                             width=6)])])
+app.layout = dbc.Container([
+    dbc.Row([
+        dbc.Col([
+            dcc.Dropdown(id='searchbar1', options=dfp.index, placeholder='Player Search', 
+                            value='Erling Haaland', clearable=False),
+            dcc.Graph(id='radar', config={'displayModeBar':False}),
+        ], xs=11, sm=11, md=11, lg=11, xl=5),
 
-
+        dbc.Col([
+            dcc.Dropdown(id='searchbar2', options=metrics, placeholder='Metric', 
+                           value='Aerial', clearable=False),
+            dcc.Graph(id='scatter',config={'displayModeBar':False,'showtips':False}),
+        ], xs=11, sm=11, md=11, lg=11, xl=5)
+    ], justify="center")
+],fluid=True)
 
 @app.callback(
     Output('radar','figure'),
@@ -374,10 +371,9 @@ def radar(Player):
     fig1.update_layout(
           polar=dict(radialaxis=dict(visible=True, showticklabels=False, range=(0,150),showline=False, dtick=20,
                                      griddash='dot',gridcolor='white'),
-                     angularaxis=dict(direction='clockwise',griddash='longdash',gridcolor='white',linecolor='white')
-
+                     angularaxis=dict(direction='clockwise',griddash='longdash',gridcolor='white',linecolor='white'),
                     ),
-        showlegend=False,dragmode=False, height=650,width=650,font_color='white',template = "plotly_dark"
+        showlegend=False,dragmode=False,margin=dict(l=100, r=100, t=100, b=100), height=650,width=650,font_color='white',template = "plotly_dark"
         )
 
     fig1.add_trace(go.Scatterpolar(r=[0],theta=['Scoring'],marker_color='rgb(17,17,17)',marker_size=127,hoverinfo='none',
