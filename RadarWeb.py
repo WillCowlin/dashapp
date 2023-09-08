@@ -241,7 +241,7 @@ YZ={'Aerial':'ASucc','Deep Defending':'Blocks','Tackling':'TSucc','Recovering':'
                     'Creating & Scoring':'Scoring'}
 
 
-# In[3]:
+# In[10]:
 
 
 app = Dash(__name__, meta_tags=[{'name': 'viewport',
@@ -258,13 +258,14 @@ app.layout = dbc.Container([
                             value='Erling Haaland', clearable=False),
             dcc.Graph(id='radar', config={'displayModeBar':False}),
         ], xs=11, sm=11, md=11, lg=11, xl=5),
-
         dbc.Col([
             dcc.Dropdown(id='searchbar2', options=metrics, placeholder='Metric', 
                            value='Aerial', clearable=False),
             dcc.Graph(id='scatter',config={'displayModeBar':False,'showtips':False}),
         ], xs=11, sm=11, md=11, lg=11, xl=5)
-    ], justify="center")
+    ], justify="center"),
+    dbc.Row([
+        dcc.Markdown('''###### Data from Opta via [FBref](https://fbref.com/en/)''',style={'color':'white'})])
 ],fluid=True)
 
 @app.callback(
