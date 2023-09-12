@@ -11,4 +11,10 @@ import dash_bootstrap_components as dbc
 
 dash.register_page(__name__)
 
-layout = dbc.Container()
+layout = dbc.Container([
+    dbc.Row([dcc.Markdown(
+        '''[Dashboard & Data](https://drive.google.com/file/d/1sCi_azGWUrJAjIWANPSa13wJslnmGc1c/view?usp=drive_link)''',
+        style={'color':'white'})]),
+    dbc.Row([dcc.Markdown('''###### Data from Opta via [FBref](https://fbref.com/en/)''',style={'color':'white'})])
+
+])
