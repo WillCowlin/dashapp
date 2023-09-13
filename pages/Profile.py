@@ -251,22 +251,31 @@ YZ={'Aerial':'ASucc','Deep Defending':'Blocks','Tackling':'TSucc','Recovering':'
 
 # In[ ]:
 
+card_radar = dbc.Card([
+    dbc.CardHeader(
+        dcc.Dropdown(id='searchbar1', options=dfp.index, placeholder='Player Search',
+                            value='Erling Haaland', clearable=False, style={"width": "550px"})
+    ),
+    dbc.CardBody(
+        dcc.Graph(id='radar', config={'displayModeBar':False})
+    )
+],color='rgb(17,17,17)',style={"width": "650px", 'height':'650px'},className="align-items-center")
+
+card_scatter = dbc.Card([
+    dbc.CardHeader(
+        dcc.Dropdown(id='searchbar2', options=metrics, placeholder='Metric',
+                     value='Aerial', clearable=False, style={"width": "550px"})
+    ),
+    dbc.CardBody(
+        dcc.Graph(id='scatter',config={'displayModeBar':False,'showtips':False})
+    )
+],color='rgb(17,17,17)',style={"width": "650px", 'height':'650px'},className="align-items-center ")
 
 layout = dbc.Container([
     dbc.Row([
-        dbc.Col([
-            dcc.Dropdown(id='searchbar1', options=dfp.index, placeholder='Player Search',
-                            value='Erling Haaland', clearable=False),
-            dcc.Graph(id='radar', config={'displayModeBar':False}),
-        ], xs=11, sm=11, md=11, lg=11, xl=5),
-        dbc.Col([
-            dcc.Dropdown(id='searchbar2', options=metrics, placeholder='Metric',
-                           value='Aerial', clearable=False),
-            dcc.Graph(id='scatter',config={'displayModeBar':False,'showtips':False}),
-        ], xs=11, sm=11, md=11, lg=11, xl=5)
-    ], justify="center"),
-    dbc.Row([
-        dcc.Markdown('''###### Data from Opta via [FBref](https://fbref.com/en/)''',style={'color':'white'})])
+        dbc.Col(card_radar,width="auto"), dbc.Col(card_scatter,width="auto")
+    ],justify="center")
+
 ],fluid=True)
 
 
@@ -373,12 +382,18 @@ def radar(Player):
                                    griddash='dot', gridcolor='white'),
                    angularaxis=dict(direction='clockwise', griddash='longdash', gridcolor='white', linecolor='white'),
                    ),
-        showlegend=False, dragmode=False, margin=dict(l=100, r=100, t=100, b=100), height=650, width=650,
-        font_color='white', template="plotly_dark"
+        showlegend=False, dragmode=False, margin=dict(l=50, r=90, t=85, b=50), height=550, width=550,
+        font_color='white', template="plotly_dark",
+        title=dict(
+            text="Data from Opta via <a href=\"https://fbref.com/en/\">FBref</a>",
+            x=0, y=0.99,
+            font=dict(size=14)
+        )
+
     )
 
     fig1.add_trace(
-        go.Scatterpolar(r=[0], theta=['Scoring'], marker_color='rgb(17,17,17)', marker_size=127, hoverinfo='none',
+        go.Scatterpolar(r=[0], theta=['Scoring'], marker_color='rgb(17,17,17)', marker_size=111, hoverinfo='none',
                         mode='text+markers', textfont_color='white', text='<b>' + Pos[Position] + '</b>',
                         textfont_size=40))
 
@@ -446,7 +461,7 @@ def scatter(Player, Metric):
 
     fig2.update_layout(paper_bgcolor='rgb(17,17,17)', plot_bgcolor='rgb(17,17,17)',
                        font_color='white', title={'x': 0.5}, template="plotly_dark",
-                       margin=dict(l=100, r=100, t=100, b=100), height=650, width=650,
+                       margin=dict(l=50, r=50, t=85, b=50), height=550, width=550,
                        showlegend=False, dragmode=False, xaxis_title='', yaxis_title='')
 
     if Metric == 'Pass Progression & Control':
@@ -589,15 +604,25 @@ def scatter(Player, Metric):
 
     dfz = dfz.set_index('Player')
 
-    fig2.add_annotation(text=Metric + ': ' + str(dfz.loc[Player, Metric]) + '<br>'
-                             + xl + ': ' + str(dfz.loc[Player, XZ[Metric]]) + '<br>'
-                             + yl + ': ' + str(dfz.loc[Player, YZ[Metric]]),
-                        align='left',
+    fig2.add_annotation(text="<span style='color:rgb(17,17,17)'> Pass Progression & Control </span>"+ '<br>' + xl + '<br>' + str(dfz.loc[Player, XZ[Metric]])+ '<br>'+' ',
+                        align='center',
                         showarrow=False,
                         xref='paper',
                         yref='paper',
-                        x=0.5,
-                        y=1.1,
+                        x=0.9,
+                        y=1.2,
+
+                        bordercolor='white',
+                        borderwidth=1,
+                        font=dict(color="white", size=12))
+
+    fig2.add_annotation(text="<span style='color:rgb(17,17,17)'> Pass Progression & Control </span>"+ '<br>' +yl + '<br>' + str(dfz.loc[Player, YZ[Metric]])+ '<br>'+' ',
+                        align='center',
+                        showarrow=False,
+                        xref='paper',
+                        yref='paper',
+                        x=0.1,
+                        y=1.2,
 
                         bordercolor='white',
                         borderwidth=1,
