@@ -1,3 +1,21 @@
 body {
 background-color:black;
 }
+
+.nav-link {
+    color: white;
+    background-color: rgb(17,17,17);
+}
+
+.nav-link:hover {
+  color: grey;
+}
+
+.nav-pills .nav-link.hover {
+    background-color: black;
+}
+
+.nav-pills .nav-link.active {
+    background-color: black;
+}
+

@@ -20,18 +20,31 @@ app = Dash(__name__, use_pages=True, meta_tags=[{'name': 'viewport',
 server = app.server
 app.title = 'EffectiveFootball'
 
-app.layout = html.Div(
-    [
-        html.Div([
-            dcc.Link(page['name']+"  |  ", href=page['path'])
-            for page in dash.page_registry.values()
-        ]),
-        html.Hr(),
-
-        # content of each page
-        dash.page_container
-    ]
+sidebar = dbc.Nav(
+            [
+                dbc.NavLink(
+                    [
+                        html.Div(page["name"], className="ms-2"),
+                    ],
+                    href=page["path"],
+                    active="exact",
+                    #style={'color':'white', 'background-color':'rgb(17,17,17'},
+                    #className="page-link"
+                )
+                for page in dash.page_registry.values()
+            ],
+            vertical=False,
+            pills=True,
+            fill=True,
+            justified=True,
+            style={'background-color':'rgb(17,17,17)'}
 )
+
+app.layout = dbc.Container([
+    dbc.Row([sidebar]),
+    html.Hr(),
+    dbc.Row([dash.page_container])
+], fluid=True)
 
 
 if __name__ == '__main__':
