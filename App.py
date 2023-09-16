@@ -41,7 +41,7 @@ sidebar = dbc.Nav(
 )
 
 app.layout = dbc.Container([
-    dbc.Row([sidebar]),
+    dbc.Row([sidebar],justify="center"),
     html.Hr(),
     dbc.Row([dash.page_container])
 ], fluid=True)
