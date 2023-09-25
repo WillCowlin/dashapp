@@ -1122,41 +1122,42 @@ layout = dbc.Container([
                         dbc.Collapse([
 
                         dbc.Row([
-                            dbc.Col(player := dcc.Dropdown(options=dfp['Player'], multi=True, placeholder="Select Player(s)",)),
-                            dbc.Col(position := dcc.Dropdown(options=['CB','FB','DM','CM','AM','W','ST'], multi=True, placeholder="Select Position(s)",)),
+                            dbc.Col(dcc.Dropdown(id='player', options=dfp['Player'], multi=True, placeholder="Select Player(s)",)),
+                            dbc.Col(dcc.Dropdown(id='position',options=['CB','FB','DM','CM','AM','W','ST'], multi=True, placeholder="Select Position(s)",)),
                         ]),
 
                         dbc.Row([
-                            dbc.Col([dcc.Markdown('Deep Defending',style={'color':'white','font-size':'12px','text-align': 'center'}), dd := dcc.Slider(0,100,1,value=0,
-                                                marks=None,tooltip={"placement": "bottom", "always_visible": True})]),
-                            dbc.Col([dcc.Markdown('Aerial',style={'color':'white','font-size':'12px','text-align': 'center'}), aerial := dcc.Slider(0, 100, 1, value=0,
+                            dbc.Col([dcc.Markdown('Deep Defending',style={'color':'white','font-size':'12px','text-align': 'center'}), dcc.Slider(0,100,1,value=0,id='dd',
                                                       marks=None,
                                                       tooltip={"placement": "bottom", "always_visible": True})]),
-                            dbc.Col([dcc.Markdown('Tackling',style={'color':'white','font-size':'12px','text-align': 'center'}), tackling := dcc.Slider(0, 100, 1, value=0,
+                            dbc.Col([dcc.Markdown('Aerial',style={'color':'white','font-size':'12px','text-align': 'center'}), dcc.Slider(0, 100, 1, value=0,id='aerial',
                                                       marks=None,
                                                       tooltip={"placement": "bottom", "always_visible": True})]),
-                            dbc.Col([dcc.Markdown('Recovering',style={'color':'white','font-size':'12px','text-align': 'center'}), recovering := dcc.Slider(0, 100, 1, value=0,
+                            dbc.Col([dcc.Markdown('Tackling',style={'color':'white','font-size':'12px','text-align': 'center'}), dcc.Slider(0, 100, 1, value=0,id='tackling',
+                                                      marks=None,
+                                                      tooltip={"placement": "bottom", "always_visible": True})]),
+                            dbc.Col([dcc.Markdown('Recovering',style={'color':'white','font-size':'12px','text-align': 'center'}), dcc.Slider(0, 100, 1, value=0,id='recovering',
                                                       marks=None,
                                                       tooltip={"placement": "bottom", "always_visible": True})])
                         ]),
                         dbc.Row([
-                            dbc.Col([dcc.Markdown('Passing',style={'color':'white','font-size':'12px','text-align': 'center'}),passing := dcc.Slider(0,100,1,value=0,
+                            dbc.Col([dcc.Markdown('Passing',style={'color':'white','font-size':'12px','text-align': 'center'}),dcc.Slider(0,100,1,value=0,id='passing',
                                                 marks=None,tooltip={"placement": "bottom", "always_visible": True})]),
-                            dbc.Col([dcc.Markdown('Pass Progression',style={'color':'white','font-size':'12px','text-align': 'center'}),pp := dcc.Slider(0, 100, 1, value=0,
+                            dbc.Col([dcc.Markdown('Pass Progression',style={'color':'white','font-size':'12px','text-align': 'center'}),dcc.Slider(0, 100, 1, value=0,id='pp',
                                                       marks=None,
                                                       tooltip={"placement": "bottom", "always_visible": True})]),
-                            dbc.Col([dcc.Markdown('Control',style={'color':'white','font-size':'12px','text-align': 'center'}),control := dcc.Slider(0, 100, 1, value=0,
+                            dbc.Col([dcc.Markdown('Control',style={'color':'white','font-size':'12px','text-align': 'center'}),dcc.Slider(0, 100, 1, value=0,id='control',
                                                       marks=None,
                                                       tooltip={"placement": "bottom", "always_visible": True})]),
-                            dbc.Col([dcc.Markdown('Dribbling',style={'color':'white','font-size':'12px','text-align': 'center'}),dribbling := dcc.Slider(0, 100, 1, value=0,
+                            dbc.Col([dcc.Markdown('Dribbling',style={'color':'white','font-size':'12px','text-align': 'center'}),dcc.Slider(0, 100, 1, value=0,id='dribbling',
                                                       marks=None,
                                                       tooltip={"placement": "bottom", "always_visible": True})])
                         ]),
                         dbc.Row([
                             dbc.Col([]),
-                            dbc.Col([dcc.Markdown('Creating',style={'color':'white','font-size':'12px','text-align': 'center'}),creating := dcc.Slider(0,100,1,value=0,
+                            dbc.Col([dcc.Markdown('Creating',style={'color':'white','font-size':'12px','text-align': 'center'}),dcc.Slider(0,100,1,value=0,id='creating',
                                                 marks=None,tooltip={"placement": "bottom", "always_visible": True})]),
-                            dbc.Col([dcc.Markdown('Scoring',style={'color':'white','font-size':'12px','text-align': 'center'}),scoring := dcc.Slider(0, 100, 1, value=0,
+                            dbc.Col([dcc.Markdown('Scoring',style={'color':'white','font-size':'12px','text-align': 'center'}),dcc.Slider(0, 100, 1, value=0,id='scoring',
                                                       marks=None,
                                                       tooltip={"placement": "bottom", "always_visible": True})]),
                             dbc.Col([])
@@ -1165,7 +1166,7 @@ layout = dbc.Container([
                         dbc.Row([html.Br()]),
 
                         dbc.Row([
-                                grid := dag.AgGrid(
+                                dag.AgGrid(id='grid',
                                     columnDefs=[{"field": "Player", "pinned": "left", 'width':'300','headerTooltip':'Player',"tooltipField": 'Player',},
                                                 {"field": "Position",'headerTooltip':'Position'},
                                                 {"field": "Deep Defending",'headerTooltip':'Deep Defending'},
@@ -1203,19 +1204,19 @@ layout = dbc.Container([
                         ],fluid=True,)
 
 @callback(
-    Output(grid, 'rowData'),
-    Input(player, 'value'),
-    Input(position, 'value'),
-    Input(dd, 'value'),
-    Input(aerial, 'value'),
-    Input(tackling, 'value'),
-    Input(recovering, 'value'),
-    Input(passing, 'value'),
-    Input(pp, 'value'),
-    Input(control, 'value'),
-    Input(dribbling, 'value'),
-    Input(creating, 'value'),
-    Input(scoring, 'value'),
+    Output('grid', 'rowData'),
+    Input('player', 'value'),
+    Input('position', 'value'),
+    Input('dd', 'value'),
+    Input('aerial', 'value'),
+    Input('tackling', 'value'),
+    Input('recovering', 'value'),
+    Input('passing', 'value'),
+    Input('pp', 'value'),
+    Input('control', 'value'),
+    Input('dribbling', 'value'),
+    Input('creating', 'value'),
+    Input('scoring', 'value'),
 )
 
 def update_grid(player_v, position_v,
