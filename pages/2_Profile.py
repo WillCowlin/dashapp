@@ -388,11 +388,10 @@ def radar(Player):
         showlegend=False, dragmode=False, margin=dict(l=50, r=90, t=85, b=50), height=550, width=550,
         font_color='white', template="plotly_dark",
         title=dict(
-            text="Data from Opta via <a href=\"https://fbref.com/en/\">FBref</a> | Outfield Players | Minimum 13.6 90s | 22/23",
-            x=0, y=0.99,
+            text="Data from Opta via <a href=\"https://fbref.com/en/\">FBref</a> | Outfield Players | Minimum 13.6 90s | 22/23 |<br>Percentile comparison with positional peers",
+            x=0, y=0.98 ,
             font=dict(size=14)
         )
-
     )
 
     fig1.add_trace(

@@ -20,7 +20,7 @@ card_1 = dbc.Card([
                     html.P("Aerials won per 90"),
             ],style={'color':'white'}
     ),
-],color='rgb(17,17,17)',style={"width": "250px", 'height':'250px'},className="align-items-center")
+],color='rgb(35,35,35)',style={"width": "250px", 'height':'250px'},className="align-items-center")
 
 card_2 = dbc.Card([
     dbc.CardHeader(html.H4("Deep Defending",style={'color':'white'})),
@@ -32,7 +32,7 @@ card_2 = dbc.Card([
                     html.P("Clearances per opposition final third pass"),
             ],style={'color':'white'}
     ),
-],color='rgb(17,17,17)',style={"width": "250px", 'height':'250px'},className="align-items-center")
+],color='rgb(35,35,35)',style={"width": "250px", 'height':'250px'},className="align-items-center")
 
 card_3 = dbc.Card([
     dbc.CardHeader(html.H4("Tackling",style={'color':'white'})),
@@ -44,7 +44,7 @@ card_3 = dbc.Card([
                     html.P("Tackles per opposition live touch"),
             ],style={'color':'white'}
     ),
-],color='rgb(17,17,17)',style={"width": "250px", 'height':'250px'},className="align-items-center")
+],color='rgb(35,35,35)',style={"width": "250px", 'height':'250px'},className="align-items-center")
 
 card_4 = dbc.Card([
     dbc.CardHeader(html.H4("Recovering",style={'color':'white'})),
@@ -56,7 +56,7 @@ card_4 = dbc.Card([
                     html.P("Aerials won per 90"),
             ],style={'color':'white'}
     ),
-],color='rgb(17,17,17)',style={"width": "250px", 'height':'250px'},className="align-items-center")
+],color='rgb(35,35,35)',style={"width": "250px", 'height':'250px'},className="align-items-center")
 
 card_5 = dbc.Card([
     dbc.CardHeader(html.H4("Passing",style={'color':'white'})),
@@ -68,7 +68,7 @@ card_5 = dbc.Card([
                     html.P("Passes per team pass"),
             ],style={'color':'white'}
     ),
-],color='rgb(17,17,17)',style={"width": "250px", 'height':'250px'},className="align-items-center")
+],color='rgb(35,35,35)',style={"width": "250px", 'height':'250px'},className="align-items-center")
 
 card_6 = dbc.Card([
     dbc.CardHeader(html.H4("Pass Progression",style={'color':'white'})),
@@ -77,7 +77,7 @@ card_6 = dbc.Card([
                     html.P("Progressive pass distance per completed pass"),
             ],style={'color':'white'}
     ),
-],color='rgb(17,17,17)',style={"width": "250px", 'height':'250px'},className="align-items-center")
+],color='rgb(35,35,35)',style={"width": "250px", 'height':'250px'},className="align-items-center")
 
 card_7 = dbc.Card([
     dbc.CardHeader(html.H4("Control",style={'color':'white'})),
@@ -86,7 +86,7 @@ card_7 = dbc.Card([
                     html.P("Miscontrols and dispossessions per carry"),
             ],style={'color':'white'}
     ),
-],color='rgb(17,17,17)',style={"width": "250px", 'height':'250px'},className="align-items-center")
+],color='rgb(35,35,35)',style={"width": "250px", 'height':'250px'},className="align-items-center")
 
 card_8 = dbc.Card([
     dbc.CardHeader(html.H4("Dribbling",style={'color':'white'})),
@@ -98,7 +98,7 @@ card_8 = dbc.Card([
                     html.P("Take ons per carry"),
             ],style={'color':'white'}
     ),
-],color='rgb(17,17,17)',style={"width": "250px", 'height':'250px'},className="align-items-center")
+],color='rgb(35,35,35)',style={"width": "250px", 'height':'250px'},className="align-items-center")
 
 card_9 = dbc.Card([
     dbc.CardHeader(html.H4("Creating",style={'color':'white'})),
@@ -107,7 +107,7 @@ card_9 = dbc.Card([
                     html.P("Expected assists per touch"),
             ],style={'color':'white'}
     ),
-],color='rgb(17,17,17)',style={"width": "250px", 'height':'250px'},className="align-items-center")
+],color='rgb(35,35,35)',style={"width": "250px", 'height':'250px'},className="align-items-center")
 
 card_10 = dbc.Card([
     dbc.CardHeader(html.H4("Scoring",style={'color':'white'})),
@@ -116,7 +116,7 @@ card_10 = dbc.Card([
                     html.P("Goals per 90"),
             ],style={'color':'white'}
     ),
-],color='rgb(17,17,17)',style={"width": "250px", 'height':'250px'},className="align-items-center")
+],color='rgb(35,35,35)',style={"width": "250px", 'height':'250px'},className="align-items-center")
 
 layout = dbc.Container([
     dbc.Row([card_1,card_2,card_3,card_4,card_5,card_6,card_7,card_8,card_9,card_10],justify="center"),
