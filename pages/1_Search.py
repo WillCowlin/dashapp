@@ -1175,23 +1175,22 @@ layout = dbc.Container([
 
                         dbc.Row([
                                 dag.AgGrid(id='grid',
-                                    columnDefs=[{"field": "Player", "pinned": "left", 'width':'300','headerTooltip':'Player',"tooltipField": 'Player',},
-                                                {"field": "Position",'headerTooltip':'Position'},
-                                                {"field": "Deep Defending",'headerTooltip':'Deep Defending'},
-                                                {"field": "Aerial",'headerTooltip':'Aerial'},
-                                                {"field": "Tackling",'headerTooltip':'Tackling'},
-                                                {"field": "Recovering",'headerTooltip':'Recovering'},
-                                                {"field": "Passing",'headerTooltip':'Passing'},
-                                                {"field": "Pass Progression",'headerTooltip':'Pass Progression'},
-                                                {"field": "Control",'headerTooltip':'Control'},
-                                                {"field": "Dribbling",'headerTooltip':'Dribbling'},
-                                                {"field": "Creating",'headerTooltip':'Creating'},
-                                                {"field": "Scoring",'headerTooltip':'Scoring'},
+                                    columnDefs=[{"field": "Player", "pinned": "left",'headerTooltip':'Player',"tooltipField": 'Player','minWidth':'200'},
+                                                {"field": "Position",'headerTooltip':'Position','minWidth':'100'},
+                                                {"field": "Deep Defending",'headerTooltip':'Deep Defending','minWidth':'100'},
+                                                {"field": "Aerial",'headerTooltip':'Aerial','minWidth':'100'},
+                                                {"field": "Tackling",'headerTooltip':'Tackling','minWidth':'100'},
+                                                {"field": "Recovering",'headerTooltip':'Recovering','minWidth':'100'},
+                                                {"field": "Passing",'headerTooltip':'Passing','minWidth':'100'},
+                                                {"field": "Pass Progression",'headerTooltip':'Pass Progression','minWidth':'100'},
+                                                {"field": "Control",'headerTooltip':'Control','minWidth':'100'},
+                                                {"field": "Dribbling",'headerTooltip':'Dribbling','minWidth':'100'},
+                                                {"field": "Creating",'headerTooltip':'Creating','minWidth':'100'},
+                                                {"field": "Scoring",'headerTooltip':'Scoring','minWidth':'100'},
                                                 ],
                                     rowData=dfp.to_dict("records"),
                                     defaultColDef = {
                                         'sortable': True
-
                                     },
                                     dashGridOptions={
                                                     'sortingOrder': ['desc', 'asc', None],
@@ -1201,7 +1200,7 @@ layout = dbc.Container([
 
                                     style={"height": 580, "width": 1500},
                                     className = "ag-theme-alpine-dark",
-                                    columnSize='sizeToFit'
+                                    columnSize='responsiveSizeToFit'
 
                                 )
 
