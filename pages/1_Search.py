@@ -1126,6 +1126,8 @@ layout = dbc.Container([
                             dbc.Col(dcc.Dropdown(id='position',options=['CB','FB','DM','CM','AM','W','ST'], multi=True, placeholder="Select Position(s)",)),
                         ]),
 
+                        dbc.Row([html.Br()]),
+
                         dbc.Row([
                             dbc.Col([dcc.Markdown('Deep Defending',style={'color':'white','font-size':'12px','text-align': 'center'}), dcc.Slider(0,100,1,value=0,id='dd',
                                                       marks=None,
@@ -1140,6 +1142,9 @@ layout = dbc.Container([
                                                       marks=None,
                                                       tooltip={"placement": "bottom", "always_visible": True})])
                         ]),
+
+                        dbc.Row([html.Br()]),
+
                         dbc.Row([
                             dbc.Col([dcc.Markdown('Passing',style={'color':'white','font-size':'12px','text-align': 'center'}),dcc.Slider(0,100,1,value=0,id='passing',
                                                 marks=None,tooltip={"placement": "bottom", "always_visible": True})]),
@@ -1153,6 +1158,9 @@ layout = dbc.Container([
                                                       marks=None,
                                                       tooltip={"placement": "bottom", "always_visible": True})])
                         ]),
+
+                        dbc.Row([html.Br()]),
+
                         dbc.Row([
                             dbc.Col([]),
                             dbc.Col([dcc.Markdown('Creating',style={'color':'white','font-size':'12px','text-align': 'center'}),dcc.Slider(0,100,1,value=0,id='creating',
